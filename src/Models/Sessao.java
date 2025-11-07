@@ -39,10 +39,47 @@ public class Sessao {
         return horario;
     }
 
-    public void setHorario(){
+    public void setHorario(LocalTime horario){
         if (horario == null){
             throw new IllegalArgumentException("O horário da sessão precisa ser preenchido");
         }
+        this.horario = horario;
+    }
+
+    public Filme getFilme(){
+        return filme;
+    }
+
+    public void setFilme(Filme filme){
+        if (filme == null){
+            throw new IllegalArgumentException("O filme precisa ser adicionado na sessão");
+        }
+        this.filme = filme;
+    }
+    public Sala getSala(){
+        return sala;
+    }
+
+    public void setSala(Sala sala){
+        if (sala == null){
+            throw new IllegalArgumentException("uma sala precisa ser escolhida para passar o filme");
+        }
+        this.sala = sala;
+    }
+    public int getVagas(){
+        return vagasDisponiveis;
+    }
+
+    public void setVagas(int vagasDisponiveis){
+        if (vagasDisponiveis < 0){
+            throw new IllegalArgumentException("uma sessão não pode passar do número de assentos");
+        }
+        this.sala = sala;
+    }
+
+    @Override
+    public String toString(){
+        return "Data do filme: " + data + " | " + "Horário da Sessão: " + horario + " | " + "Filme: " + filme + " | "+ "Sala: " + sala + " | " + "Vagas Disponiveis: " + vagasDisponiveis;
     }
 }
     
