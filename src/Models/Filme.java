@@ -4,9 +4,9 @@ public class Filme {
     private String titulo;
     private String genero;
     private String classificacao;
-    private int duracao;
+    private double duracao;
 
-    public Filme (String titulo, String genero, String classificacao, int duracao){
+    public Filme (String titulo, String genero, String classificacao, double duracao){
         this.titulo = titulo;
         this.genero = genero;
         this.classificacao = classificacao;
@@ -39,10 +39,10 @@ public class Filme {
         this.classificacao = classificacao;
     }
 
-    public int getDuracao() {
+    public double getDuracao() {
         return duracao;
     }
-    public void setDuracao(int duracao){
+    public void setDuracao(double duracao){
         if (duracao <= 0){
             throw new IllegalArgumentException("A duração deve ser positiva!");
         }
