@@ -25,6 +25,9 @@ public class Sala {
     }
 
     public void setCapacidade(int capacidade){
+        if (capacidade == 0){
+            throw new IllegalArgumentException("A aba de capacidade não pode estar vazia!");
+        }
         if (capacidade < 0){
             throw new IllegalArgumentException("A capacidade não pode ser negativa");
         }
