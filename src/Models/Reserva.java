@@ -3,10 +3,10 @@ package Models;
 public class Reserva {
     private Sessao sessao;
     //adicionei o atributo Assento pois era não faz muito sentido um assento ser apenas um número sem verificação de ocupação
-    private Assento assento;
+    private String assento;
     private boolean statusPagamento;
 
-    public Reserva (Sessao sessao, Assento assento, boolean statusPagamento){
+    public Reserva (Sessao sessao, String assento, boolean statusPagamento){
         this.sessao = sessao;
         this.assento = assento;
         this.statusPagamento = statusPagamento;
@@ -23,11 +23,11 @@ public class Reserva {
         this.sessao = sessao;
     }
 
-    public Assento getAssento(){
+    public String getAssento(){
         return assento;
     }
 
-    public void setAssento(Assento assento){
+    public void setAssento(String assento){
         if (assento == null){
             throw new IllegalArgumentException("Precisa colocar uma assento para assistir o filme");
         }
@@ -52,13 +52,13 @@ public class Reserva {
 
     public void confirmarPagamento() {
         this.statusPagamento = true;
-        System.out.println("Pagamento confirmado do assento: " + assento.getNumero());
+        System.out.println("Pagamento confirmado do assento: " + getAssento());
     }
 
     @Override
     public String toString() {
         String status = statusPagamento ? "Pago" : "Pendente";
-        return "Resumo da reserva: "+ " | " + "Filme: " + sessao.getFilme().getTitulo()  + " |" + "Data da Sessão: " + sessao.getData() + " | " + "Horário da Sessão: " + sessao.getHorario() + " | " + "Sala: " +  sessao.getSala().getNome() +" | " + "Assento: " +  assento.getNumero() + " | " + "Status: " +  status;
+        return "Resumo da reserva: "+ " | " + "Filme: " + sessao.getFilme().getTitulo()  + " |" + "Data da Sessão: " + sessao.getData() + " | " + "Horário da Sessão: " + sessao.getHorario() + " | " + "Sala: " +  sessao.getSala().getNome() +" | " + "Assento: " +  assento + " | " + "Status: " +  status;
 
 
     }
