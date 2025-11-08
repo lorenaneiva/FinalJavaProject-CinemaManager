@@ -10,7 +10,7 @@ public class FilmeService {
     private int proximoId = 1;
 
     public FilmeService() {
-        this.filmes = new ArrayList<>();
+        this.filmes = new ArrayList<>(); // [cite: 22]
     }
 
     //                                              ------IMPORTANTE (DANIEL,LORENA)-----
@@ -18,6 +18,9 @@ public class FilmeService {
     // Lorena, se a classe filme não receber o ID no construtor, prfv me avisa para eu e o daniel arrumarmos isso, pq ele esqueceu..
 
     public void adicionarFilme(Filme filme) {
+        // Logica de atribuiçao do ID nova
+        filme.setId(this.proximoId++);
+
         this.filmes.add(filme);
         System.out.println(" Filme '" + filme.getTitulo() + "' adicionado com sucesso bro");
     }
@@ -32,17 +35,17 @@ public class FilmeService {
 
     public Filme buscarFilmePorId(int id) {
         for (Filme f : filmes) {
-            // Esssa é a logica que usei pra procurar por id. Caso de erros, me avisem pra eu trocar.
-          //  if (f.getId() == id) {
-         //       return f;
-         //   }
-      //  }
-      //  return null;
+            // Esssa é a logica que usei pra procurar por id. [
+            // Caso de erros, me avisem pra eu trocar.
+            if (f.getId() == id) {
+                return f;
+            }
+        }
+        return null;
     }
 
     public boolean editarFilme(int id, String novoTitulo, String novoGenero, String novaClassificacao, double novaDuracao) {
         Filme filmeParaEditar = buscarFilmePorId(id);
-
         // Essa parte aqui EDITA um filme que o usuario buscou por ID (deu varios erros, entao provavelmente talvez ainda de algum...
         // qualquer coisa me avisem prfv. )
 
@@ -65,7 +68,6 @@ public class FilmeService {
 
     public boolean removerFilme(int id) {
         Filme filmeParaRemover = buscarFilmePorId(id);
-
         if (filmeParaRemover != null) {
             this.filmes.remove(filmeParaRemover);
             return true;
