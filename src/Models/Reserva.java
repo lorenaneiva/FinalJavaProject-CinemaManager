@@ -2,11 +2,10 @@ package Models;
 
 public class Reserva {
     private Sessao sessao;
-    //adicionei o atributo Assento pois era não faz muito sentido um assento ser apenas um número sem verificação de ocupação
-    private String assento;
+    private int assento;
     private boolean statusPagamento;
 
-    public Reserva (Sessao sessao, String assento, boolean statusPagamento){
+    public Reserva (Sessao sessao, int assento, boolean statusPagamento){
         this.sessao = sessao;
         this.assento = assento;
         this.statusPagamento = statusPagamento;
@@ -18,17 +17,17 @@ public class Reserva {
 
     public void setSessao(Sessao sessao){
         if (sessao == null ){
-            throw new IllegalArgumentException("Precisa adicionar uma sessão para fazer reserva");
+            throw new IllegalArgumentException("Precisa adicionar uma sessao para fazer reserva");
         }
         this.sessao = sessao;
     }
 
-    public String getAssento(){
+    public int getAssento(){
         return assento;
     }
 
-    public void setAssento(String assento){
-        if (assento == null){
+    public void setAssento(int assento){
+        if (assento == 0 ){
             throw new IllegalArgumentException("Precisa colocar uma assento para assistir o filme");
         }
         this.assento = assento;
@@ -58,9 +57,7 @@ public class Reserva {
     @Override
     public String toString() {
         String status = statusPagamento ? "Pago" : "Pendente";
-        return "Resumo da reserva: "+ " | " + "Filme: " + sessao.getFilme().getTitulo()  + " |" + "Data da Sessão: " + sessao.getData() + " | " + "Horário da Sessão: " + sessao.getHorario() + " | " + "Sala: " +  sessao.getSala().getNome() +" | " + "Assento: " +  assento + " | " + "Status: " +  status;
-
-
+        return "Resumo da reserva: "+ " | " + "Filme: " + sessao.getFilme().getTitulo()  + " |" + "Data da Sessao: " + sessao.getData() + " | " + "Horario da Sessao: " + sessao.getHorario() + " | " + "Sala: " +  sessao.getSala().getNome() +" | " + "Assento: " +  assento + " | " + "Status: " +  status;
     }
     
 }

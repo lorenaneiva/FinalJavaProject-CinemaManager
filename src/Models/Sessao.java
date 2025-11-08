@@ -1,7 +1,5 @@
 package Models;
 
-//implementei o localDate e LocalTime por que percebi que fazer data e dia com condicional é bem difícil com String... e se colocassem 01/10/1200? não teria como dar erro
-//Link do vídeo que eu assisti: https://youtu.be/F2bZ1fkAQx0?si=ZWGJIy0SZM1GbGyK
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -28,9 +26,8 @@ public class Sessao {
         if (data == null){
             throw new IllegalArgumentException("o filme precisa de uma data");
         }
-        //código simples para verificar se a data colocada não é uma data anterior a de agora
         if (data.isBefore(LocalDate.now())){
-            throw new IllegalArgumentException("a data precisa ser após a data atual");
+            throw new IllegalArgumentException("a data precisa ser apos a data atual");
         }
         this.data = data;
     }
@@ -41,7 +38,7 @@ public class Sessao {
 
     public void setHorario(LocalTime horario){
         if (horario == null){
-            throw new IllegalArgumentException("O horário da sessão precisa ser preenchido");
+            throw new IllegalArgumentException("O horario da sessao precisa ser preenchido");
         }
         this.horario = horario;
     }
@@ -52,7 +49,7 @@ public class Sessao {
 
     public void setFilme(Filme filme){
         if (filme == null){
-            throw new IllegalArgumentException("O filme precisa ser adicionado na sessão");
+            throw new IllegalArgumentException("O filme precisa ser adicionado na sessao");
         }
         this.filme = filme;
     }
@@ -72,14 +69,13 @@ public class Sessao {
 
     public void setVagas(int vagasDisponiveis){
         if (vagasDisponiveis < 0){
-            throw new IllegalArgumentException("uma sessão não pode passar do número de assentos");
+            throw new IllegalArgumentException("uma sessao nao pode passar do numero de assentos");
         }
-        this.sala = sala;
+        this.vagasDisponiveis = vagasDisponiveis;
     }
 
     @Override
     public String toString(){
-        return "Data do filme: " + data + " | " + "Horário da Sessão: " + horario + " | " + "Filme: " + filme + " | "+ "Sala: " + sala + " | " + "Vagas Disponiveis: " + vagasDisponiveis;
+        return "Data do filme: " + data + " | " + "Horario da Sessao: " + horario + " | " + "Filme: " + filme + " | "+ "Sala: " + sala + " | " + "Vagas Disponiveis: " + vagasDisponiveis;
     }
 }
-    

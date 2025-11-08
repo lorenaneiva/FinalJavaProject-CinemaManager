@@ -13,9 +13,9 @@ public class Sala {
         return nome;
     }
 
-    public void setNome(){
+    public void setNome(String nome){
         if (nome == null || nome.isEmpty()){
-            throw new IllegalArgumentException("A aba de nome não pode estar vazia!");
+            throw new IllegalArgumentException("A aba de nome nao pode estar vazia!");
         }
         this.nome = nome;
     }
@@ -26,13 +26,14 @@ public class Sala {
 
     public void setCapacidade(int capacidade){
         if (capacidade == 0){
-            throw new IllegalArgumentException("A aba de capacidade não pode estar vazia!");
+            throw new IllegalArgumentException("A aba de capacidade nao pode estar vazia!");
         }
         if (capacidade < 0){
-            throw new IllegalArgumentException("A capacidade não pode ser negativa");
+            throw new IllegalArgumentException("A capacidade nao pode ser negativa");
         }
         this.capacidade = capacidade;
     }
+    
     @Override
     public String toString() {
         return  "Nome: "+ nome + " | " + "Capacidade: " + capacidade;
