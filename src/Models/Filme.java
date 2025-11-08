@@ -1,6 +1,9 @@
 package Models;
 
 public class Filme {
+
+    private static int contadorGlobal = 0;
+
     private int id;
     private String titulo;
     private String genero;
@@ -8,15 +11,11 @@ public class Filme {
     private double duracao;
 
     public Filme() {
-        this.id = 0;
-        this.titulo = "";
-        this.genero = "";
-        this.classificacao = "";
-        this.duracao = 0.0;
+        this.id = ++contadorGlobal;
     }
     
     public Filme(int id, String titulo, String genero, String classificacao, double duracao){
-        this.id = id;
+        this.id = ++contadorGlobal;
         this.titulo = titulo;
         this.genero = genero;
         this.classificacao = classificacao;

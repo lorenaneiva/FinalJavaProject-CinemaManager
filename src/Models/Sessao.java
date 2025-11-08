@@ -11,11 +11,6 @@ public class Sessao {
     private int vagasDisponiveis;
 
     public Sessao(){
-        this.data = null;
-        this.horario = null;
-        this.filme = null;
-        this.sala = null;
-        this.vagasDisponiveis = 0;
     }
 
     public Sessao(LocalDate data, LocalTime horario, Filme filme, Sala sala, int vagasDisponiveis) {
