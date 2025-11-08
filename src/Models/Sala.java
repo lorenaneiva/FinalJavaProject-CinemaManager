@@ -4,6 +4,11 @@ public class Sala {
     private String nome;
     private int capacidade;
 
+    public Sala(){
+        this.nome = "";
+        this.capacidade = 0;
+    }
+
     public Sala(String nome,int capacidade){
         this.nome = nome;
         this.capacidade = capacidade;

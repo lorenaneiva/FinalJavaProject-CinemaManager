@@ -5,6 +5,12 @@ public class Reserva {
     private int assento;
     private boolean statusPagamento;
 
+    public Reserva(){
+        this.sessao = null;
+        this.assento = 0;
+        this.statusPagamento = false;
+    }
+
     public Reserva (Sessao sessao, int assento, boolean statusPagamento){
         this.sessao = sessao;
         this.assento = assento;
