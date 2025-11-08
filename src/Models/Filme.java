@@ -7,7 +7,6 @@ public class Filme {
     private String classificacao;
     private double duracao;
 
-    // Construtor padrão
     public Filme() {
         this.id = 0;
         this.titulo = "";
@@ -15,14 +14,7 @@ public class Filme {
         this.classificacao = "";
         this.duracao = 0.0;
     }
-
-    public Filme(String titulo, String genero, String classificacao, double duracao){
-        this.titulo = titulo;
-        this.genero = genero;
-        this.classificacao = classificacao;
-        this.duracao = duracao;
-    }
-
+    
     public Filme(int id, String titulo, String genero, String classificacao, double duracao){
         this.id = id;
         this.titulo = titulo;
