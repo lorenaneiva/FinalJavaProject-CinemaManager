@@ -31,9 +31,14 @@ public class ServiceTest {
         // editar filme
         System.out.println("----------");
 
-        filmeService.editarFilme(0, "TituloTeste", "GeneroTeste", "ClassificaoTeste", 666);
+        filmeService.editarFilme(1, "TituloTeste", "GeneroTeste", "ClassificaoTeste", 666);
 
+        System.out.println(filmeService.listarFilmes());
+        
+        // buscarFilmePorId
+        System.out.println("----------");
         System.out.println(filmeService.buscarFilmePorId(1));
+
         // remover filme  
         System.out.println("----------");
 
