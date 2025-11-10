@@ -3,13 +3,18 @@
     Responsável por iniciar os serviços e exibir o menu principal.
 */
 
-public class Main {
-    public static void main(String[] args){
+import java.time.LocalDate;
+import java.time.LocalTime;
 
-    }
-    
-    public static void exibirMenuPrincipal() {
-    
+import Models.Filme;
+import Models.Sala;
+import Models.Sessao;
+import Models.Reserva;
+
+public class ServiceTest {
+    public static void main(String[] args){
+        
+
     }
 }
 
