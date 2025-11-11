@@ -14,8 +14,7 @@ public class Filme {
         this.id = ++contadorGlobal;
     }
     
-    public Filme(int id, String titulo, String genero, String classificacao, double duracao){
-        this.id = ++contadorGlobal;
+    public Filme(String titulo, String genero, String classificacao, double duracao){
         this.titulo = titulo;
         this.genero = genero;
         this.classificacao = classificacao;
@@ -24,10 +23,6 @@ public class Filme {
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getTitulo(){
