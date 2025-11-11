@@ -15,6 +15,7 @@ public class Filme {
     }
     
     public Filme(String titulo, String genero, String classificacao, double duracao){
+        this.id = contadorGlobal++;
         this.titulo = titulo;
         this.genero = genero;
         this.classificacao = classificacao;
