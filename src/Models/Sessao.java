@@ -3,6 +3,8 @@ package Models;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import Services.FilmeService;
+
 public class Sessao {
     private LocalDate data;
     private LocalTime horario;
@@ -55,6 +57,17 @@ public class Sessao {
             throw new IllegalArgumentException("O filme precisa ser adicionado na sessao");
         }
         this.filme = filme;
+    }
+
+    public void definirFilmePorId(int id, FilmeService filmeService) {
+        Filme filmeEncontrado = filmeService.buscarFilmePorId(id);
+        if (filmeEncontrado != null) {
+        setFilme(filmeEncontrado);
+        }   
+        else {
+        throw new IllegalArgumentException("Filme com ID " + id + " não encontrado.");
+        }
+
     }
     public Sala getSala(){
         return sala;
