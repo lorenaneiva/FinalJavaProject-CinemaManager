@@ -4,6 +4,7 @@ public class Reserva {
     private Sessao sessao;
     private int assento;
     private boolean statusPagamento;
+    
 
     public Reserva(){
     }
