@@ -2,7 +2,6 @@ package Models;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import Services.FilmeService;
 
 public class Sessao {
     private int id;
@@ -11,7 +10,6 @@ public class Sessao {
     private Sala sala;
     private int vagasDisponiveis;
     private ArrayList<Filme> filmes;
-    private int proximoId = 1;
     private Filme filme;
     
     public Sessao() {
@@ -25,53 +23,8 @@ public class Sessao {
         this.filmes = new ArrayList<>();
         this.filmes.add(filme);
     }
-    // Adicionar filme
-    public void adicionarFilme(Filme filme) {
-        if (filme == null) {
-            throw new IllegalArgumentException("O filme não pode ser nulo.");
-        }
-        filme.setId(proximoId++);
-        filme.add(filme);
-        System.out.println("Filme '" + filme.getTitulo() + "' adicionado com sucesso.");
-    }
-    // Listar filmes
     public ArrayList<Filme> listarFilmes() {
-        return filmes;
-    }
-    // Buscar por ID
-   public void definirFilmePorId(int id, FilmeService filmeService) {
-    Filme filmeEncontrado = filmeService.buscarFilmePorId(id);
-    if (filmeEncontrado != null) {
-        setFilme(filmeEncontrado);
-    }
-    else {
-        throw new IllegalArgumentException("Filme com ID " + id + " não encontrado.");
-    }
-    }
-    // Editar filme 
-    public boolean editarFilme(int id, String novoTitulo, String novoGenero, String novaClassificacao, double novaDuracao, FilmeService filmeService) {
-        Filme filmeEncontrado = filmeService.buscarFilmePorId(id);
-        if (filmeEncontrado != null) {
-            filmeEncontrado.setTitulo(novoTitulo);
-            filmeEncontrado.setGenero(novoGenero);
-            filmeEncontrado.setClassificacao(novaClassificacao);
-            filmeEncontrado.setDuracao(novaDuracao);
-            System.out.println("Filme com ID " + id + " editado com sucesso.");
-            return true;
-        } else {
-            throw new IllegalArgumentException("Filme com ID " + id + " não encontrado.");
-        }
-    }
-    // Remover filme 
-    public boolean removerFilme(int id, FilmeService filmeService) {
-        Filme filmeEncontrado = filmeService.buscarFilmePorId(id);
-        if (filmeEncontrado != null) {
-            filmes.remove(filmeEncontrado);
-            System.out.println("Filme com ID " + id + " removido com sucesso.");
-            return true;
-        } else {
-            throw new IllegalArgumentException("Filme com ID " + id + " não encontrado.");
-        }
+    return filmes;
     }
     public int getId() {
     return id;
