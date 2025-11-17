@@ -15,7 +15,7 @@ public class Sessao {
     public Sessao() {
         this.filmes = new ArrayList<>();
     }
-     public Sessao(LocalDate data, LocalTime horario, Filme filme, Sala sala, int vagasDisponiveis) {
+    public Sessao(LocalDate data, LocalTime horario, Filme filme, Sala sala, int vagasDisponiveis) {
         this.data = data;
         this.horario = horario;
         this.sala = sala;
@@ -57,7 +57,7 @@ public class Sessao {
         this.horario = horario;
     }
     public Filme getFilme(){
-        return getFilme();
+        return filme;
     }
     public void setFilme(Filme filme){
         if (filme == null){
