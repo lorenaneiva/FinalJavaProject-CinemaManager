@@ -66,4 +66,9 @@ public class Filme {
         return titulo + " | Genero: " + genero + " | Classificacao: " 
             + classificacao + " | Duracao: " + duracao + " min";
     }
+
+    public void add(Filme filme) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'add'");
+    }
 }

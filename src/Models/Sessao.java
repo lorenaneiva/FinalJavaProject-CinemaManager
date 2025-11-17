@@ -1,32 +1,43 @@
 package Models;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
-
-import Services.FilmeService;
+import java.util.ArrayList;
 
 public class Sessao {
+    private int id;
     private LocalDate data;
     private LocalTime horario;
-    private Filme filme;
     private Sala sala;
     private int vagasDisponiveis;
-
-    public Sessao(){
+    private ArrayList<Filme> filmes;
+    private Filme filme;
+    
+    public Sessao() {
+        this.filmes = new ArrayList<>();
     }
-
-    public Sessao(LocalDate data, LocalTime horario, Filme filme, Sala sala, int vagasDisponiveis) {
+     public Sessao(LocalDate data, LocalTime horario, Filme filme, Sala sala, int vagasDisponiveis) {
         this.data = data;
         this.horario = horario;
-        this.filme = filme;
         this.sala = sala;
         this.vagasDisponiveis = vagasDisponiveis;
+        this.filmes = new ArrayList<>();
+        this.filmes.add(filme);
     }
-
+    public ArrayList<Filme> listarFilmes() {
+    return filmes;
+    }
+    public int getId() {
+    return id;
+    }
+    public void setId(int id) {
+    if (id <= 0) {
+        throw new IllegalArgumentException("O ID da sessão deve ser maior que zero.");
+    }
+    this.id = id;
+    }
     public LocalDate getData(){
         return data;
     }
-
     public void setData(LocalDate data){
         if (data == null){
             throw new IllegalArgumentException("o filme precisa de uma data");
@@ -36,43 +47,27 @@ public class Sessao {
         }
         this.data = data;
     }
-
     public LocalTime getHorario(){
         return horario;
     }
-
     public void setHorario(LocalTime horario){
         if (horario == null){
             throw new IllegalArgumentException("O horario da sessao precisa ser preenchido");
         }
         this.horario = horario;
     }
-
     public Filme getFilme(){
-        return filme;
+        return getFilme();
     }
-
     public void setFilme(Filme filme){
         if (filme == null){
             throw new IllegalArgumentException("O filme precisa ser adicionado na sessao");
         }
         this.filme = filme;
     }
-
-    public void definirFilmePorId(int id, FilmeService filmeService) {
-        Filme filmeEncontrado = filmeService.buscarFilmePorId(id);
-        if (filmeEncontrado != null) {
-        setFilme(filmeEncontrado);
-        }   
-        else {
-        throw new IllegalArgumentException("Filme com ID " + id + " não encontrado.");
-        }
-
-    }
     public Sala getSala(){
         return sala;
     }
-
     public void setSala(Sala sala){
         if (sala == null){
             throw new IllegalArgumentException("uma sala precisa ser escolhida para passar o filme");
@@ -82,14 +77,12 @@ public class Sessao {
     public int getVagas(){
         return vagasDisponiveis;
     }
-
     public void setVagas(int vagasDisponiveis){
         if (vagasDisponiveis < 0){
             throw new IllegalArgumentException("uma sessao nao pode passar do numero de assentos");
         }
         this.vagasDisponiveis = vagasDisponiveis;
     }
-
     @Override
     public String toString(){
         return "Data do filme: " + data + " | " + "Horario da Sessao: " + horario + " | " + "Filme: " + filme + " | "+ "Sala: " + sala + " | " + "Vagas Disponiveis: " + vagasDisponiveis;
