@@ -1,15 +1,25 @@
 package Models;
 
 public class Sala {
+
+    private static int contadorGlobal = 0;
+
+    private int id;
     private String nome;
     private int capacidade;
 
     public Sala(){
+        this.id = ++contadorGlobal;
     }
 
     public Sala(String nome,int capacidade){
+        this.id = ++contadorGlobal;
         this.nome = nome;
         this.capacidade = capacidade;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getNome(){
