@@ -1,7 +1,6 @@
 package Models;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 
 public class Sessao {
     private int id;
@@ -9,23 +8,19 @@ public class Sessao {
     private LocalTime horario;
     private Sala sala;
     private int vagasDisponiveis;
-    private ArrayList<Filme> filmes;
     private Filme filme;
     
     public Sessao() {
-        this.filmes = new ArrayList<>();
+
     }
     public Sessao(LocalDate data, LocalTime horario, Filme filme, Sala sala, int vagasDisponiveis) {
-        this.data = data;
-        this.horario = horario;
-        this.sala = sala;
-        this.vagasDisponiveis = vagasDisponiveis;
-        this.filmes = new ArrayList<>();
-        this.filmes.add(filme);
+        setData(data);
+        setHorario(horario);
+        setFilme(filme);
+        setSala(sala);
+        setVagas(vagasDisponiveis);
     }
-    public ArrayList<Filme> listarFilmes() {
-    return filmes;
-    }
+
     public int getId() {
     return id;
     }
