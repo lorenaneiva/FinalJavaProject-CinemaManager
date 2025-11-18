@@ -17,11 +17,11 @@ public class SalaMenu {
         while (true) {
             String opcao = JOptionPane.showInputDialog(
                     "Menu de Salas\n\n" +
-                    "1 - Cadastrar Salas" +
-                    "2 - Listar Salas" +
-                    "3 - Editar Salass" +
-                    "4 - Remover Sala" +
-                    "0 - Voltar" +
+                    "1 - Cadastrar Salas\n" +
+                    "2 - Listar Salas\n" +
+                    "3 - Editar Salass\n" +
+                    "4 - Remover Sala\n" +
+                    "0 - Voltar\n\n" +
                     "Escolha uma opção: "
             );
 

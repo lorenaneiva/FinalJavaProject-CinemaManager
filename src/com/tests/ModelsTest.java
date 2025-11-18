@@ -1,7 +1,4 @@
-/*
-    Classe principal do sistema de gerenciamento de cinema.
-    Responsável por iniciar os serviços e exibir o menu principal.
-*/
+package com.tests;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

@@ -1,7 +1,5 @@
-/*
-    Classe principal do sistema de gerenciamento de cinema.
-    Responsável por iniciar os serviços e exibir o menu principal.
-*/
+package com.tests;
+
 import Models.Filme;
 import Services.FilmeService;
 

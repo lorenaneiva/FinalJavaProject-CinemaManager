@@ -1,15 +1,17 @@
-/*
-    Classe principal do sistema de gerenciamento de cinema.
-    Responsável por iniciar os serviços e exibir o menu principal.
-*/
+import UI.MenuPrincipal;
+import javax.swing.SwingUtilities;
 
 public class Main {
-    public static void main(String[] args){
 
-    }
-    
-    public static void exibirMenuPrincipal() {
-    
+    public static void main(String[] args) {
+
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                MenuPrincipal menu = new MenuPrincipal();
+                menu.exibirMenu();
+                System.exit(0);
+            }
+        });
     }
 }
-

@@ -9,8 +9,8 @@ import Models.Sala;
 import Models.Sessao;
 
 public class SessaoService {
-    
     private List<Sessao> sessoes = new ArrayList<>();
+
 
      public static int getContadorSessao() {
         return contadorGlobal;
@@ -18,20 +18,11 @@ public class SessaoService {
 
     //para adicionar uma sessao
     public void adicionarSessao(LocalDate data, LocalTime horario, Filme filme, Sala sala, int vagasDisponiveis) {
-
-    // Verificações de nulidade e validade
-    if (data == null || horario == null || filme == null || sala == null) {
-        throw new IllegalArgumentException("Nenhum dos parâmetros pode ser nulo.");
-    }
-
-    if (vagasDisponiveis <= 0) {
-        throw new IllegalArgumentException("O número de vagas deve ser maior que zero.");
-    }
-
     Sessao sessao = new Sessao(data, horario, filme, sala, vagasDisponiveis);
     sessoes.add(sessao);
     System.out.println("Acicionar Sessao com ID " + sessao.getId() );
     }
+    
     //para buscar uma Sessao por ID
     public Sessao buscarSessaoPorId(int id) {
     for (Sessao sessao : sessoes) {
@@ -41,6 +32,7 @@ public class SessaoService {
     }
     throw new IllegalArgumentException("Sessão com ID " + id + " não encontrada.");
     }
+    //para editar
     public void editarSessao(int id, LocalDate novaData, LocalTime novoHorario, Filme novoFilme, Sala novaSala, int novasVagas) {
     //fazendo a busca da sessao pelo ID
     for (Sessao sessao : sessoes) {
@@ -75,6 +67,7 @@ public class SessaoService {
             return;
         }
     }
-    throw new IllegalArgumentException("Sessão com ID " + id + " não encontrada.");
+        throw new IllegalArgumentException("Sessão com ID " + id + " não encontrada.");
     }
+
 }
