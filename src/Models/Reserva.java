@@ -1,18 +1,29 @@
 package Models;
 
 public class Reserva {
+
+    private static int contadorGlobal = 0;
+
     private Sessao sessao;
     private int assento;
     private boolean statusPagamento;
+    private int id;
     
 
     public Reserva(){
+        this.id = ++contadorGlobal;
     }
+    
 
     public Reserva (Sessao sessao, int assento, boolean statusPagamento){
+        this.id = ++contadorGlobal;
         this.sessao = sessao;
         this.assento = assento;
         this.statusPagamento = statusPagamento;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public Sessao getSessao(){
