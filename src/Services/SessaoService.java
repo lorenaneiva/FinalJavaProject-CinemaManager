@@ -11,30 +11,41 @@ import Models.Sessao;
 public class SessaoService {
     private List<Sessao> sessoes = new ArrayList<>();
 
-
-     public static int getContadorSessao() {
-        return contadorGlobal;
-    }
-
-    //para adicionar uma sessao
+    //para adicionar uma sessão
     public void adicionarSessao(LocalDate data, LocalTime horario, Filme filme, Sala sala, int vagasDisponiveis) {
     Sessao sessao = new Sessao(data, horario, filme, sala, vagasDisponiveis);
     sessoes.add(sessao);
-    System.out.println("Acicionar Sessao com ID " + sessao.getId() );
+    System.out.println("Adicionar Sessao: " + sessao.getId() );
     }
-    
-    //para buscar uma Sessao por ID
+    //para listar sessões
+    public void listarSessoes() {
+    if (sessoes.isEmpty()) {
+        System.out.println("Nenhuma sessão cadastrada.");
+        return;
+    }
+
+    System.out.println("Lista de Sessões:");
+    for (Sessao sessao : sessoes) {
+        System.out.println("ID: " + sessao.getId() +
+                           " | Data: " + sessao.getData() +
+                           " | Horário: " + sessao.getHorario() +
+                           " | Filme: " + sessao.getFilme().getTitulo() +
+                           " | Sala: " + sessao.getSala().getNome() +
+                           " | Vagas: " + sessao.getVagas());
+    }
+    }
+    //para buscar uma Sessão por ID
     public Sessao buscarSessaoPorId(int id) {
     for (Sessao sessao : sessoes) {
         if (sessao.getId() == id) {
             return sessao;
         }
     }
-    throw new IllegalArgumentException("Sessão com ID " + id + " não encontrada.");
+    throw new IllegalArgumentException("Sessão: " + id + " não encontrada.");
     }
     //para editar
     public void editarSessao(int id, LocalDate novaData, LocalTime novoHorario, Filme novoFilme, Sala novaSala, int novasVagas) {
-    //fazendo a busca da sessao pelo ID
+    //fazendo a busca da sessão pelo ID
     for (Sessao sessao : sessoes) {
         if (sessao.getId() == id) {
             // Validações
@@ -52,22 +63,22 @@ public class SessaoService {
             sessao.setSala(novaSala);
             sessao.setVagas(novasVagas);
 
-            System.out.println("Sessão com ID " + id + " foi atualizada com sucesso.");
+            System.out.println("Sessão: " + id + " foi atualizada com sucesso.");
             return;
         }
     }
-    throw new IllegalArgumentException("Sessão com ID " + id + " não encontrada.");
+    throw new IllegalArgumentException("Sessão: " + id + " não encontrada.");
     }
-    //para remover uma sessao
+    //para remover uma sessão
     public void removerSessao(int id) {
     for (Sessao sessao : sessoes) {
         if (sessao.getId() == id) {
             sessoes.remove(sessao);
-            System.out.println("Sessão com ID " + id + " removida com sucesso.");
+            System.out.println("Sessão: " + id + " removida com sucesso.");
             return;
         }
     }
-        throw new IllegalArgumentException("Sessão com ID " + id + " não encontrada.");
+        throw new IllegalArgumentException("Sessão: " + id + " não encontrada.");
     }
 
 }
