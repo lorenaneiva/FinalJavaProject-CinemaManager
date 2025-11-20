@@ -3,6 +3,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Sessao {
+
+    private static int contadorGlobal = 0;
+
     private int id;
     private LocalDate data;
     private LocalTime horario;
@@ -11,9 +14,11 @@ public class Sessao {
     private Filme filme;
     
     public Sessao() {
+        this.id = ++contadorGlobal;
 
     }
     public Sessao(LocalDate data, LocalTime horario, Filme filme, Sala sala, int vagasDisponiveis) {
+        this.id = ++contadorGlobal;
         setData(data);
         setHorario(horario);
         setFilme(filme);
