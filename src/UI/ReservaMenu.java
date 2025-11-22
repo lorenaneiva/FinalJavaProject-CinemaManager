@@ -9,8 +9,13 @@ import Services.SessaoService;
 import java.util.List;
 
 public class ReservaMenu {
-    private ReservaService reservaService = new ReservaService();
-    private SessaoService sessaoService = new SessaoService();
+    private ReservaService reservaService;
+    private SessaoService sessaoService;
+
+    public ReservaMenu(ReservaService reservaService, SessaoService sessaoService) {
+        this.reservaService = reservaService;
+        this.sessaoService = sessaoService;
+    }
 
     public void exibirMenu() {
         int selecao = -1; // inicialização obrigatória

@@ -2,19 +2,24 @@ package UI;
 
 import Services.FilmeService;
 import Services.SalaService;
+import Services.SessaoService;
+import Services.ReservaService;
 import javax.swing.JOptionPane;
 
 public class MenuPrincipal {
 
     private FilmeService filmeService = new FilmeService();
     private SalaService salaService = new SalaService();
-
+    private SessaoService sessaoService = new SessaoService();
+    private ReservaService reservaService = new ReservaService();
     public void exibirMenu() {
         String input;
         int opcao = -1;
 
         FilmeMenu filmeMenu = new FilmeMenu(filmeService);
         SalaMenu salaMenu = new SalaMenu(salaService);
+        SessaoMenu sessaoMenu = new SessaoMenu(filmeService, salaService, sessaoService);
+        ReservaMenu reservaMenu = new ReservaMenu(reservaService, sessaoService);
 
         while (opcao != 0) {
             String menu = " Gerenciador de Cinema \n\n";
@@ -45,7 +50,7 @@ public class MenuPrincipal {
                     salaMenu.exibirMenuPrincipal();
                     break;
                 case 3:
-                    JOptionPane.showMessageDialog(null, "Menu de Sessões/Reservas ainda não implementado.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                    sessaoMenu.exibirMenu();
                     break;
                 case 0:
                     JOptionPane.showMessageDialog(null, "Encerrando o sistema. Até mais!", "Sair", JOptionPane.INFORMATION_MESSAGE);
