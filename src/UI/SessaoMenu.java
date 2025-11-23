@@ -150,7 +150,6 @@ public class SessaoMenu {
                     Sala novaSala = selecionarSala();
                     if (novaSala != null) {
                         sessao.setSala(novaSala);
-                        // Atualiza vagas automaticamente
                         sessao.setVagas(novaSala.getCapacidade());
                     }
                     break;
