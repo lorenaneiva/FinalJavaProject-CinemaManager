@@ -126,7 +126,7 @@ public class SalaMenu {
     } 
 
     private void removerSala() {
-
+        listarSalas();
         String idStr = JOptionPane.showInputDialog("Digite o ID da sala que quer remover, por favor: ");
         if (idStr == null) return;
 
