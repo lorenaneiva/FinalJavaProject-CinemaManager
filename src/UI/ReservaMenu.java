@@ -27,8 +27,7 @@ public class ReservaMenu {
                 "1 - Adicionar Reserva\n" +
                 "2 - Listar Reservas\n" +
                 "3 - Editar Reserva\n" +
-                "4 - Buscar Reserva por ID\n" +
-                "5 - Remover Reserva\n" +
+                "4 - Remover Reserva\n" + 
                 "0 - Voltar ao Menu Principal"
             );
 
