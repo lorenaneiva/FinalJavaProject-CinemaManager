@@ -76,7 +76,7 @@ public class ReservaMenu {
 
             reservaService.adicionarReserva(sessao, assento, statusPagamento);
 
-            JOptionPane.showMessageDialog(null, "Reserva adicionada com sucesso!");
+            JOptionPane.showMessageDialog(null, "Reserva adicionada com sucesso!\nVagas restantes: " + sessao.getVagas());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao adicionar reserva: ");
         }

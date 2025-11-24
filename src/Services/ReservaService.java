@@ -22,6 +22,13 @@ public class ReservaService {
         }
         // Criação da reserva
         Reserva reserva = new Reserva(sessao, assento, statusPagamento);
+        // Reduz vagas disponíveis
+        int vagasAtuais = sessao.getVagas();
+        if (vagasAtuais <= 0) {
+            throw new IllegalStateException("Não há vagas disponíveis para essa sessão.");
+        }
+        sessao.setVagas(vagasAtuais - 1);
+
         // Adiciona à lista
         reservas.add(reserva);
 

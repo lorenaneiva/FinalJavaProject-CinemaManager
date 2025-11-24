@@ -12,8 +12,8 @@ public class SessaoService {
     private List<Sessao> sessoes = new ArrayList<>();
 
     //para adicionar uma sessão
-    public void adicionarSessao(LocalDate data, LocalTime horario, Filme filme, Sala sala, int vagasDisponiveis) {
-    Sessao sessao = new Sessao(data, horario, filme, sala, vagasDisponiveis);
+    public void adicionarSessao(LocalDate data, LocalTime horario, Filme filme, Sala sala) {
+    Sessao sessao = new Sessao(data, horario, filme, sala);
     sessoes.add(sessao);
     System.out.println("Adicionar Sessao: " + sessao.getId() );
     }
@@ -44,7 +44,7 @@ public class SessaoService {
     throw new IllegalArgumentException("Sessão: " + id + " não encontrada.");
     }
     //para editar
-    public void editarSessao(int id, LocalDate novaData, LocalTime novoHorario, Filme novoFilme, Sala novaSala, int novasVagas) {
+    public void editarSessao(int id, LocalDate novaData, LocalTime novoHorario, Filme novoFilme, Sala novaSala) {
     //fazendo a busca da sessão pelo ID
     for (Sessao sessao : sessoes) {
         if (sessao.getId() == id) {
@@ -52,16 +52,12 @@ public class SessaoService {
             if (novaData == null || novoHorario == null || novoFilme == null || novaSala == null) {
                 throw new IllegalArgumentException("Nenhum dos parâmetros pode ser nulo.");
             }
-            if (novasVagas <= 0) {
-                throw new IllegalArgumentException("O número de vagas deve ser maior que zero.");
-            }
 
             //atualização das alterações
             sessao.setData(novaData);
             sessao.setHorario(novoHorario);
             sessao.setFilme(novoFilme);
             sessao.setSala(novaSala);
-            sessao.setVagas(novasVagas);
 
             System.out.println("Sessão: " + id + " foi atualizada com sucesso.");
             return;
