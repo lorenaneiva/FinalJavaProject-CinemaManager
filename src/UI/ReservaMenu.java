@@ -65,6 +65,7 @@ public class ReservaMenu {
     }
 
     private void adicionarReserva() {
+        sessaoService.listarSessoes();
         try {
             int idSessao = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID da sessão:"));
             int assento = Integer.parseInt(JOptionPane.showInputDialog("Digite o número do assento:"));
@@ -78,7 +79,7 @@ public class ReservaMenu {
 
             JOptionPane.showMessageDialog(null, "Reserva adicionada com sucesso!\nVagas restantes: " + sessao.getVagas());
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao adicionar reserva: ");
+            JOptionPane.showMessageDialog(null, "Erro ao adicionar reserva: "+ e);
         }
     }
 

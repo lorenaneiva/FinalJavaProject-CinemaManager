@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JOptionPane;
+
 import Models.Filme;
 import Models.Reserva;
 import Models.Sala;
@@ -23,6 +26,21 @@ public class SessaoService {
         System.out.println("Sessao adicionada com sucesso.");
     }
 
+    //para listar sessões
+    public void listarSessoes() {
+        if (this.sessoes.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nenhuma sessão cadastrada!");
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder("Lista de Sessões:\n");
+
+        for (Sessao sessao : this.sessoes) {
+            sb.append("ID ").append(sessao.getId()).append(" | Data: ").append(sessao.getData()).append(" | Horário: ").append(sessao.getHorario()).append(" | Filme: ").append(sessao.getFilme().getTitulo()).append(" | Sala: ").append(sessao.getSala().getNome()).append(" | Vagas: ").append(sessao.getVagas());
+        }
+
+        JOptionPane.showMessageDialog(null, sb.toString());
+        }
     //para buscar uma Sessão por ID
     public Sessao buscarSessaoPorId(int id) {
         for (Sessao sessao : sessoes) {
