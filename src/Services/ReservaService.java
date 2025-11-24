@@ -20,6 +20,12 @@ public class ReservaService {
         if (assento <= 0) {
             throw new IllegalArgumentException("Precisa colocar um número de assento válido.");
         }
+        for (Reserva reserva : reservas){
+            if(reserva.getAssento() == assento){
+                throw new IllegalArgumentException("Este assento já está ocupado.");
+            }
+        }
+
         // Criação da reserva
         Reserva reserva = new Reserva(sessao, assento, statusPagamento);
         // Reduz vagas disponíveis

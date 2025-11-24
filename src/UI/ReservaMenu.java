@@ -107,10 +107,13 @@ public class ReservaMenu {
     }
 
     private void editarReserva() {
+        listarReservas();
         try {
             int idReserva = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID da reserva que deseja editar:"));
-            int novoAssento = Integer.parseInt(JOptionPane.showInputDialog("Digite o novo número de assento:"));
-            int idSessao = Integer.parseInt(JOptionPane.showInputDialog("Digite o novo ID da sessão:"));
+            Reserva reserva = reservaService.buscarReservaPorId(idReserva);
+            int novoAssento = Integer.parseInt(JOptionPane.showInputDialog("Digite o novo número de assento:", reserva.getAssento()));
+        sessaoService.listarSessoes();
+            int idSessao = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID da nova sessao", reserva.getSessao().getId()));
 
             Sessao novaSessao = sessaoService.buscarSessaoPorId(idSessao);
 
@@ -123,6 +126,7 @@ public class ReservaMenu {
     }
 
     private void removerReserva() {
+        listarReservas();
         try {
             int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID da reserva que deseja remover:"));
             reservaService.removerReservaPorId(id);
