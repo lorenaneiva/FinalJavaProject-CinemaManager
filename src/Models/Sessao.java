@@ -23,7 +23,7 @@ public class Sessao {
         setHorario(horario);
         setFilme(filme);
         setSala(sala);
-        setVagas(vagasDisponiveis);
+        setVagas(50);
     }
 
     public int getId() {
