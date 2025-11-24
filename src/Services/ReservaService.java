@@ -9,8 +9,8 @@ public class ReservaService {
     
     private List<Reserva> reservas = new ArrayList<>();
     public List<Reserva> getTodasReservas() {
-    return reservas;
-}
+        return reservas;
+    }
     //para adicionar reserva
     public void adicionarReserva(Sessao sessao, int assento, boolean statusPagamento) {
         // Validações
@@ -22,6 +22,13 @@ public class ReservaService {
         }
         // Criação da reserva
         Reserva reserva = new Reserva(sessao, assento, statusPagamento);
+        // Reduz vagas disponíveis
+        int vagasAtuais = sessao.getVagas();
+        if (vagasAtuais <= 0) {
+            throw new IllegalStateException("Não há vagas disponíveis para essa sessão.");
+        }
+        sessao.setVagas(vagasAtuais - 1);
+
         // Adiciona à lista
         reservas.add(reserva);
 
@@ -36,8 +43,8 @@ public class ReservaService {
         System.out.println("Lista de Reservas:");
         for (Reserva reserva : reservas) {
             System.out.println("Sessão ID: " + reserva.getSessao().getId() +
-                               " | Assento: " + reserva.getAssento() +
-                               " | Pagamento: " + (reserva.isStatusPagamento()));
+                            " | Assento: " + reserva.getAssento() +
+                            " | Pagamento: " + (reserva.isStatusPagamento()));
         }
     }
     //para editar reservas
@@ -67,7 +74,7 @@ public class ReservaService {
     }
     throw new IllegalArgumentException("Reserva: " + id + " não encontrada.");
     }
-   public void removerReservaPorId(int id) {
+    public void removerReservaPorId(int id) {
     // Verificação de ID 
     if (id <= 0) {
         throw new IllegalArgumentException("O ID da reserva deve ser maior que zero.");

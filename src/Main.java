@@ -7,15 +7,5 @@ public class Main {
 
         MenuPrincipal menu = new MenuPrincipal();
         menu.exibirMenu();
-
-
-        // SwingUtilities.invokeLater(new Runnable() {
-        //     @Override
-        //     public void run() {
-        //         MenuPrincipal menu = new MenuPrincipal();
-        //         menu.exibirMenu();
-        //         System.exit(0);
-        //     }
-        // });
     }
 }

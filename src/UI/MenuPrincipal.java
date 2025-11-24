@@ -25,7 +25,8 @@ public class MenuPrincipal {
             String menu = " Gerenciador de Cinema \n\n";
             menu += "1. Gerenciar Filmes\n";
             menu += "2. Gerenciar Salas\n";
-            menu += "3. Gerenciar Sessões e Reservas\n";
+            menu += "3. Gerenciar Sessões\n";
+            menu += "4. Gerenciar Reservas\n";
             menu += "0. Sair do Sistema";
 
             input = JOptionPane.showInputDialog(null, menu, "Menu Principal", JOptionPane.PLAIN_MESSAGE);
@@ -51,6 +52,9 @@ public class MenuPrincipal {
                     break;
                 case 3:
                     sessaoMenu.exibirMenu();
+                    break;
+                case 4:
+                    reservaMenu.exibirMenu();
                     break;
                 case 0:
                     JOptionPane.showMessageDialog(null, "Encerrando o sistema. Até mais!", "Sair", JOptionPane.INFORMATION_MESSAGE);

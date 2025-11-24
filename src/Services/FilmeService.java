@@ -13,7 +13,7 @@ public class FilmeService {
 
     public void adicionarFilme(Filme filme) {
         this.filmes.add(filme);
-        System.out.println(" Filme '" + filme.getTitulo() + "' adicionado com sucesso bro");
+        System.out.println(" Filme '" + filme.getTitulo() + "' adicionado com sucesso");
     }
 
     public ArrayList<Filme> listarFilmes() {
