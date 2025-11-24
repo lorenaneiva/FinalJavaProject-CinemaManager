@@ -28,7 +28,8 @@ public class SessaoMenu {
     public void exibirMenu() {
         while (true) {
             String opcao = JOptionPane.showInputDialog(
-                "Menu das Sessões\n" +
+                "=== Menu das Sessões ===\n\n" +
+                "Selecione uma das opções abaixo:\n\n" +
                 "1 - Criar sessão\n" +
                 "2 - Listar sessões\n" +
                 "3 - Editar sessão\n" +
@@ -70,10 +71,10 @@ public class SessaoMenu {
             String horarioStr = JOptionPane.showInputDialog("Digite o horário da sessão (HH:mm):");
             DateTimeFormatter fmtHora = DateTimeFormatter.ofPattern("HH:mm");
             LocalTime horario = LocalTime.parse(horarioStr, fmtHora);
-
+            JOptionPane.showMessageDialog(null,"Visualize os filmes disponiveis para a sessão e selecione um.");
             Filme filme = selecionarFilme();
             if (filme == null) return;
-
+            JOptionPane.showMessageDialog(null,"Visualize as salas disponiveis para a sessão e selecione uma.");
             Sala sala = selecionarSala();
             if (sala == null) return;
             int vagas = sala.getCapacidade();
@@ -98,8 +99,8 @@ public class SessaoMenu {
 
         StringBuilder sb = new StringBuilder("Lista de Sessões:\n");
 
-        for (Sessao s : sessoes) {
-            sb.append("ID ").append(s.getId()).append(" -> ").append(s).append("\n");
+        for (Sessao sessao : sessoes) {
+            sb.append("ID ").append(sessao.getId()).append(" | Data: ").append(sessao.getData()).append(" | Horário: ").append(sessao.getHorario()).append(" | Filme: ").append(sessao.getFilme().getTitulo()).append(" | Sala: ").append(sessao.getSala().getNome()).append(" | Vagas: ").append(sessao.getVagas());
         }
 
         JOptionPane.showMessageDialog(null, sb.toString());

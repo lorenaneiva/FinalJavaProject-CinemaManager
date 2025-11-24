@@ -16,10 +16,11 @@ public class SalaMenu {
 
         while (true) {
             String opcao = JOptionPane.showInputDialog(
-                    "Menu de Salas\n\n" +
+                    "=== Menu de Salas ===\n\n" +
+                    "Selecione uma das opções abaixo:\n\n" +
                     "1 - Cadastrar Salas\n" +
                     "2 - Listar Salas\n" +
-                    "3 - Editar Salass\n" +
+                    "3 - Editar Salas\n" +
                     "4 - Remover Sala\n" +
                     "0 - Voltar\n\n" +
                     "Escolha uma opção: "
@@ -95,7 +96,7 @@ public class SalaMenu {
 
 
     private void editarSala() {
-
+        listarSalas();
         String idStr = JOptionPane.showInputDialog("Digite o ID da sala que quer editar: ");
         if (idStr == null) return;
 

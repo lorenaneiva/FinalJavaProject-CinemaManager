@@ -22,7 +22,8 @@ public class MenuPrincipal {
         ReservaMenu reservaMenu = new ReservaMenu(reservaService, sessaoService);
 
         while (opcao != 0) {
-            String menu = " Gerenciador de Cinema \n\n";
+            String menu = "=== Gerenciador de Cinema ===\n\n";
+            menu += "Selecione uma das opções abaixo:\n\n";
             menu += "1. Gerenciar Filmes\n";
             menu += "2. Gerenciar Salas\n";
             menu += "3. Gerenciar Sessões\n";

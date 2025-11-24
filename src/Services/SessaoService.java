@@ -23,23 +23,6 @@ public class SessaoService {
         System.out.println("Sessao adicionada com sucesso.");
     }
 
-    //para listar sessões
-    public void listarSessoes() {
-        if (sessoes.isEmpty()) {
-            System.out.println("Nenhuma sessão cadastrada.");
-            return;
-        }
-
-        System.out.println("Lista de Sessões:");
-        for (Sessao sessao : sessoes) {
-            System.out.println("ID: " + sessao.getId() +
-                            " | Data: " + sessao.getData() +
-                            " | Horário: " + sessao.getHorario() +
-                            " | Filme: " + sessao.getFilme().getTitulo() +
-                            " | Sala: " + sessao.getSala().getNome() +
-                            " | Vagas: " + sessao.getVagas());
-        }
-    }
     //para buscar uma Sessão por ID
     public Sessao buscarSessaoPorId(int id) {
         for (Sessao sessao : sessoes) {

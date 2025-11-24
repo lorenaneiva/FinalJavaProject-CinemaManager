@@ -18,8 +18,8 @@ public class FilmeMenu {
 
         do {
             opcao = JOptionPane.showInputDialog(
-                "Menu de filmes\n\n" +
-                "Selecione uma das opções abaixo:\n" +
+                "=== Menu de filmes ===\n\n" +
+                "Selecione uma das opções abaixo:\n\n" +
                 "1 - Cadastrar filme\n" +
                 "2 - Listar filmes\n" +
                 "3 - Editar filme\n" +
@@ -45,8 +45,7 @@ public class FilmeMenu {
                     removerFilme();
                     break;
                 case "0":
-                    JOptionPane.showMessageDialog(null, "Voltando para o menu principal...");
-                    break;
+                    return;
                 default:
                     JOptionPane.showMessageDialog(null, "Opção inválida, tente novamente!");
             }

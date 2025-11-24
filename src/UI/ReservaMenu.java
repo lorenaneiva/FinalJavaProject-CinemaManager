@@ -22,7 +22,8 @@ public class ReservaMenu {
 
         do {
             String input = JOptionPane.showInputDialog(
-                "=== Menu de Reservas ===\n" +
+                "=== Menu de Reservas ===\n\n" +
+                "Selecione uma das opções abaixo:\n\n" +
                 "1 - Adicionar Reserva\n" +
                 "2 - Listar Reservas\n" +
                 "3 - Editar Reserva\n" +
@@ -55,8 +56,7 @@ public class ReservaMenu {
                     removerReserva();
                     break;
                 case 0:
-                    JOptionPane.showMessageDialog(null, "Voltando ao menu principal...");
-                    break;
+                    return;
                 default:
                     JOptionPane.showMessageDialog(null, "Opção inválida.");
             }
