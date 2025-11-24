@@ -22,8 +22,7 @@ public class SalaMenu {
                     "2 - Listar Salas\n" +
                     "3 - Editar Salas\n" +
                     "4 - Remover Sala\n" +
-                    "0 - Voltar\n\n" +
-                    "Escolha uma opção: "
+                    "0 - Voltar ao Menu Principal"
             );
 
             if (opcao == null) return; 

@@ -24,7 +24,7 @@ public class FilmeMenu {
                 "2 - Listar filmes\n" +
                 "3 - Editar filme\n" +
                 "4 - Remover filme\n" +
-                "0 - Voltar"
+                "0 - Voltar ao Menu Principal"
             );
 
             if (opcao == null) {

@@ -34,8 +34,7 @@ public class SessaoMenu {
                 "2 - Listar sessões\n" +
                 "3 - Editar sessão\n" +
                 "4 - Remover sessões\n" +
-                "0 - Sair\n" +
-                "Escolha: "
+                "0 - Voltar ao Menu Principal"
             );
 
             if (opcao == null) return;
