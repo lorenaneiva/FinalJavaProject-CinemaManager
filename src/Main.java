@@ -5,13 +5,17 @@ public class Main {
 
     public static void main(String[] args) {
 
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                MenuPrincipal menu = new MenuPrincipal();
-                menu.exibirMenu();
-                System.exit(0);
-            }
-        });
+        MenuPrincipal menu = new MenuPrincipal();
+        menu.exibirMenu();
+
+
+        // SwingUtilities.invokeLater(new Runnable() {
+        //     @Override
+        //     public void run() {
+        //         MenuPrincipal menu = new MenuPrincipal();
+        //         menu.exibirMenu();
+        //         System.exit(0);
+        //     }
+        // });
     }
 }
