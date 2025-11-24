@@ -1,0 +1,272 @@
+package UI;
+
+import Models.Filme;
+import Models.Sala;
+import Models.Sessao;
+import Services.FilmeService;
+import Services.SalaService;
+import Services.SessaoService;
+
+import javax.swing.JOptionPane;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+
+public class SessaoMenu {
+
+    private ArrayList<Sessao> sessoes = new ArrayList<>();
+
+    private FilmeService filmeService;
+    private SalaService salaService;
+    private SessaoService sessaoService;
+
+    public SessaoMenu(FilmeService filmeService, SalaService salaService, SessaoService sessaoService) {
+        this.filmeService = filmeService;
+        this.salaService = salaService;
+        this.sessaoService = sessaoService;
+    }
+
+    public void exibirMenu() {
+        while (true) {
+            String opcao = JOptionPane.showInputDialog(
+                "Menu das Sessões\n" +
+                "1 - Criar sessão\n" +
+                "2 - Listar sessões\n" +
+                "3 - Editar sessão\n" +
+                "4 - Remover sessões\n" +
+                "0 - Sair\n" +
+                "Escolha: "
+            );
+
+            if (opcao == null) return;
+
+            switch (opcao) {
+                case "1":
+                    criarSessao();
+                    break;
+                case "2":
+                    listarSessoes();
+                    break;
+                case "3":
+                    editarSessao();
+                    break;
+                case "4":
+                    removerSessao();
+                    break;
+                case "5":
+                    return;
+                default:
+                    JOptionPane.showMessageDialog(null, "Opção inválida, tente novamente!");
+            }
+        }
+    }
+
+    private void criarSessao() {
+        try {
+            //Tava dando erro na parte de aceitar datas, tive que especificar formato
+            String dataStr = JOptionPane.showInputDialog("Digite a data da sessão (dd/MM/yyyy):");
+            DateTimeFormatter fmtData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate data = LocalDate.parse(dataStr, fmtData);
+
+            String horarioStr = JOptionPane.showInputDialog("Digite o horário da sessão (HH:mm):");
+            DateTimeFormatter fmtHora = DateTimeFormatter.ofPattern("HH:mm");
+            LocalTime horario = LocalTime.parse(horarioStr, fmtHora);
+
+            Filme filme = selecionarFilme();
+            if (filme == null) return;
+
+            Sala sala = selecionarSala();
+            if (sala == null) return;
+            int vagas = sala.getCapacidade();
+
+            Sessao novaSessao = new Sessao(data, horario, filme, sala, vagas);
+            sessoes.add(novaSessao);
+
+            JOptionPane.showMessageDialog(null, "Sessão criada com sucesso!");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao criar sessão: " + e.getMessage());
+        }
+    }
+
+    private void listarSessoes() {
+        if (sessoes.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nenhuma sessão cadastrada!");
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder("Lista de Sessões:\n");
+
+        for (Sessao s : sessoes) {
+            sb.append("ID ").append(s.getId()).append(" -> ").append(s).append("\n");
+        }
+
+        JOptionPane.showMessageDialog(null, sb.toString());
+    }
+
+    private void editarSessao() {
+        Sessao sessao = selecionarSessao();
+        if (sessao == null) return;
+
+        String opcao = JOptionPane.showInputDialog(
+            "Editar Sessões\n" +
+            "1 - Alterar Data\n" +
+            "2 - Alterar Horário\n" +
+            "3 - Alterar Filme\n" +
+            "4 - Alterar Sala\n" +
+            "Escolha:"
+        );
+
+        try {
+            switch (opcao) {
+                case "1": {
+                    DateTimeFormatter fmtData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    LocalDate novaData = LocalDate.parse(
+                        JOptionPane.showInputDialog("Nova data (dd/MM/yyyy):"),
+                        fmtData
+                    );
+                    sessao.setData(novaData);
+                    break;
+                }
+
+                case "2": {
+                    DateTimeFormatter fmtHora = DateTimeFormatter.ofPattern("HH:mm");
+                    LocalTime novoHorario = LocalTime.parse(
+                        JOptionPane.showInputDialog("Novo horário (HH:mm):"),
+                        fmtHora
+                    );
+                    sessao.setHorario(novoHorario);
+                    break;
+                }
+
+                case "3": {
+                    Filme novoFilme = selecionarFilme();
+                    if (novoFilme != null) sessao.setFilme(novoFilme);
+                    break;
+                }
+
+                case "4": {
+                    Sala novaSala = selecionarSala();
+                    if (novaSala != null) {
+                        sessao.setSala(novaSala);
+                        sessao.setVagas(novaSala.getCapacidade());
+                    }
+                    break;
+                }
+
+                default:
+                    JOptionPane.showMessageDialog(null, "Opção inválida!");
+            }
+
+            JOptionPane.showMessageDialog(null, "Sessão editada com sucesso!");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao editar sessão: " + e.getMessage());
+        }
+    }
+
+    private void removerSessao() {
+        Sessao sessao = selecionarSessao();
+        if (sessao == null) return;
+
+        sessoes.remove(sessao);
+        JOptionPane.showMessageDialog(null, "Sessão removida com sucesso!");
+    }
+
+    private Sessao selecionarSessao() {
+        if (sessoes.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nenhuma sessão cadastrada!");
+            return null;
+        }
+
+        listarSessoes();
+
+        try {
+            int id = Integer.parseInt(
+                JOptionPane.showInputDialog("Digite o ID da sessão:")
+            );
+
+            for (Sessao s : sessoes) {
+                if (s.getId() == id) return s;
+            }
+
+            JOptionPane.showMessageDialog(null, "Sessão não encontrada!");
+            return null;
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ID inválido!");
+            return null;
+        }
+    }
+
+    private Filme selecionarFilme() {
+        ArrayList<Filme> filmes = filmeService.listarFilmes();
+
+        if (filmes.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nenhum filme cadastrado!");
+            return null;
+        }
+
+        StringBuilder sb = new StringBuilder("Lista de filmes:\n");
+        for (Filme f : filmes) {
+            sb.append("ID ").append(f.getId()).append(" -> ").append(f).append("\n");
+        }
+
+        JOptionPane.showMessageDialog(null, sb.toString());
+
+        try {
+            int id = Integer.parseInt(
+                JOptionPane.showInputDialog("Digite o ID do filme:")
+            );
+
+            Filme filme = filmeService.buscarFilmePorId(id);
+
+            if (filme == null) {
+                JOptionPane.showMessageDialog(null, "Filme não encontrado!");
+                return null;
+            }
+
+            return filme;
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ID inválido!");
+            return null;
+        }
+    }
+
+    private Sala selecionarSala() {
+        ArrayList<Sala> salas = salaService.listarSalas();
+
+        if (salas.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nenhuma sala cadastrada!");
+            return null;
+        }
+
+        StringBuilder sb = new StringBuilder("Lista de salas:\n");
+        for (Sala s : salas) {
+            sb.append("ID ").append(s.getId()).append(" -> ").append(s).append("\n");
+        }
+
+        JOptionPane.showMessageDialog(null, sb.toString());
+
+        try {
+            int id = Integer.parseInt(
+                JOptionPane.showInputDialog("Digite o ID da sala:")
+            );
+
+            Sala sala = salaService.buscarSalaPorId(id);
+
+            if (sala == null) {
+                JOptionPane.showMessageDialog(null, "Sala não encontrada!");
+                return null;
+            }
+
+            return sala;
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ID inválido!");
+            return null;
+        }
+    }
+}

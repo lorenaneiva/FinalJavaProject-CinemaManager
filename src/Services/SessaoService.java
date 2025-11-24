@@ -1,54 +1,80 @@
 package Services;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 import Models.Filme;
+import Models.Sala;
 import Models.Sessao;
 
 public class SessaoService {
+    private List<Sessao> sessoes = new ArrayList<>();
 
-    //para adicionar um filme
-//    public void adicionarFilme(Filme filme, Sessao sessao) {
-//    if (filme == null) {
-//        throw new IllegalArgumentException("O filme não pode ser nulo.");
-//    }
-//
-//    sessao.listarFilmes().add(filme);
-//    System.out.println("Filme '" + filme.getTitulo() + "' com ID " + filme.getId() + " adicionado com sucesso.");
-//}
-
-    //para buscar um filme por ID
-    public void definirFilmePorId(int id, Sessao sessao, FilmeService filmeService) {
-        Filme filmeEncontrado = filmeService.buscarFilmePorId(id);
-        if (filmeEncontrado != null) {
-            sessao.setFilme(filmeEncontrado);
-        } else {
-            throw new IllegalArgumentException("Filme com ID " + id + " não encontrado.");
-        }
+    //para adicionar uma sessão
+    public void adicionarSessao(LocalDate data, LocalTime horario, Filme filme, Sala sala) {
+    Sessao sessao = new Sessao(data, horario, filme, sala);
+    sessoes.add(sessao);
+    System.out.println("Adicionar Sessao: " + sessao.getId() );
+    }
+    //para listar sessões
+    public void listarSessoes() {
+    if (sessoes.isEmpty()) {
+        System.out.println("Nenhuma sessão cadastrada.");
+        return;
     }
 
-    //para editar um filme
-    public boolean editarFilme(int id, String novoTitulo, String novoGenero, String novaClassificacao, double novaDuracao, Sessao sessao, FilmeService filmeService) {
-        Filme filmeEncontrado = filmeService.buscarFilmePorId(id);
-        if (filmeEncontrado != null) {
-            filmeEncontrado.setTitulo(novoTitulo);
-            filmeEncontrado.setGenero(novoGenero);
-            filmeEncontrado.setClassificacao(novaClassificacao);
-            filmeEncontrado.setDuracao(novaDuracao);
-            System.out.println("Filme com ID " + id + " editado com sucesso.");
-            return true;
-        } else {
-            throw new IllegalArgumentException("Filme com ID " + id + " não encontrado.");
+    System.out.println("Lista de Sessões:");
+    for (Sessao sessao : sessoes) {
+        System.out.println("ID: " + sessao.getId() +
+                           " | Data: " + sessao.getData() +
+                           " | Horário: " + sessao.getHorario() +
+                           " | Filme: " + sessao.getFilme().getTitulo() +
+                           " | Sala: " + sessao.getSala().getNome() +
+                           " | Vagas: " + sessao.getVagas());
+    }
+    }
+    //para buscar uma Sessão por ID
+    public Sessao buscarSessaoPorId(int id) {
+    for (Sessao sessao : sessoes) {
+        if (sessao.getId() == id) {
+            return sessao;
         }
     }
+    throw new IllegalArgumentException("Sessão: " + id + " não encontrada.");
+    }
+    //para editar
+    public void editarSessao(int id, LocalDate novaData, LocalTime novoHorario, Filme novoFilme, Sala novaSala) {
+    //fazendo a busca da sessão pelo ID
+    for (Sessao sessao : sessoes) {
+        if (sessao.getId() == id) {
+            // Validações
+            if (novaData == null || novoHorario == null || novoFilme == null || novaSala == null) {
+                throw new IllegalArgumentException("Nenhum dos parâmetros pode ser nulo.");
+            }
 
-    //para remover um filme
-//    public boolean removerFilme(int id, Sessao sessao, FilmeService filmeService) {
-//        Filme filmeEncontrado = filmeService.buscarFilmePorId(id);
-//        if (filmeEncontrado != null) {
-//            sessao.listarFilmes().remove(filmeEncontrado);
-//            System.out.println("Filme com ID " + id + " removido com sucesso.");
-//            return true;
-//        } else {
-//            throw new IllegalArgumentException("Filme com ID " + id + " não encontrado.");
-//        }
-//    }
+            //atualização das alterações
+            sessao.setData(novaData);
+            sessao.setHorario(novoHorario);
+            sessao.setFilme(novoFilme);
+            sessao.setSala(novaSala);
+
+            System.out.println("Sessão: " + id + " foi atualizada com sucesso.");
+            return;
+        }
+    }
+    throw new IllegalArgumentException("Sessão: " + id + " não encontrada.");
+    }
+    //para remover uma sessão
+    public void removerSessao(int id) {
+    for (Sessao sessao : sessoes) {
+        if (sessao.getId() == id) {
+            sessoes.remove(sessao);
+            System.out.println("Sessão: " + id + " removida com sucesso.");
+            return;
+        }
+    }
+        throw new IllegalArgumentException("Sessão: " + id + " não encontrada.");
+    }
+
 }
